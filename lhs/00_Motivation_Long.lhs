@@ -7,7 +7,7 @@
 
 <img src="../img/firstbug-crop.jpg" height=400px>
 
-The First *Bug* 
+The First *Bug*
 ---------------
 
 <img src="../img/firstbug-crop2.jpg" height=300px>
@@ -16,7 +16,8 @@ The First *Bug*
 
 A dead moth removed from the device
 
-<!-- BEGIN CUT
+
+<div class="hidden">
 
 Morris Worm (1988)
 ------------------
@@ -29,7 +30,7 @@ Morris Worm (1988)
 
 + Harmless internet probe gone berserk
 
-END CUT -->
+</div>
 
 Slammer Worm (2003)
 -------------------
@@ -127,7 +128,7 @@ Make **good** designs **easy** and **bad** designs **hard**
 </div>
 
 
-Modern Languages? 
+Modern Languages?
 -------------------
 
 <br>
@@ -164,7 +165,7 @@ Division By Zero
 
 
 
-<div class="fragment"> 
+<div class="fragment">
 \begin{spec}
 λ> let average xs = sum xs `div` length xs
 
@@ -175,8 +176,8 @@ Division By Zero
 
 <br>
 
-<div class="fragment"> 
-\begin{spec}  
+<div class="fragment">
+\begin{spec}
 λ> average []
 *** Exception: divide by zero
 \end{spec}
@@ -186,9 +187,9 @@ Division By Zero
 Missing Keys
 ------------
 
-<div class="fragment"> 
-\begin{spec}  
-λ> :m +Data.Map 
+<div class="fragment">
+\begin{spec}
+λ> :m +Data.Map
 λ> let m = fromList [ ("haskell", "lazy")
                     , ("racket" , "eager")]
 
@@ -199,7 +200,7 @@ Missing Keys
 
 <br>
 
-<div class="fragment"> 
+<div class="fragment">
 \begin{spec}
 λ> m ! "javascript"
 "*** Exception: key is not in the map
@@ -209,18 +210,18 @@ Missing Keys
 Segmentation Faults
 -------------------
 
-<div class="fragment"> 
+<div class="fragment">
 \begin{spec}
-λ> :m +Data.Vector 
+λ> :m +Data.Vector
 λ> let v = fromList ["haskell", "racket"]
 λ> unsafeIndex v 0
 "haskell"
 \end{spec}
 </div>
 
-<div class="fragment"> 
+<div class="fragment">
 <br>
-\begin{spec} 
+\begin{spec}
 λ> V.unsafeIndex v 3
 
 
@@ -233,7 +234,7 @@ Segmentation Faults
 -------------
 
 \begin{spec}
-λ> :m + Data.Text Data.Text.Unsafe 
+λ> :m + Data.Text Data.Text.Unsafe
 λ> let t = pack "Norman"
 λ> takeWord16 4 t
 "Norm"
@@ -241,7 +242,7 @@ Segmentation Faults
 
 <br>
 
-<div class="fragment"> 
+<div class="fragment">
 Memory overflows **leaking secrets**...
 
 <br>
@@ -263,13 +264,13 @@ Extend Type System
 
 + To prevent *wider class* of errors
 
-+ To enforce *program specific* properties 
++ To enforce *program specific* properties
 
 <br>
 
 <div class="fragment">
 
-**Without sacrificing automation** 
+**Without sacrificing automation**
 
 </div>
 
@@ -364,14 +365,13 @@ Generalize *Program Logics* with *Types*
 + **Inference:**   Hindley-Milner + Abstract Interpretation
   -->
 
-<div class="fragment"> 
+<div class="fragment">
   <br>
   Towards reconciling Automation and Expressiveness
 </div>
 
 <br>
 
-<div class="fragment"> 
+<div class="fragment">
 [[continue]](01_SimpleRefinements.lhs.slides.html)
 </div>
-
