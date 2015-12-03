@@ -448,9 +448,12 @@ Scales to Collections, HOFs, Polymorphism ...
 <br>
 
 <div class="fragment">
+
+<div class="hidden">
 [DEMO](../hs/start/001_Refinements.hs)
 
 <br>
+</div>
 
 [[continue...]](02_Measures.lhs.slides.html)
 

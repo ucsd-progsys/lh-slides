@@ -329,7 +329,8 @@ Tension
 **Goal:** Find a sweet spot?
 
 <div class="fragment">
-[[continue]](01_SimpleRefinements.lhs.slides.html)
+[[continue]](Index.lhs.slides.html#/plan)
+
 </div>
 
 

@@ -85,32 +85,58 @@ type List a = [a]
 Example: Length of a List
 -------------------------
 
-\begin{spec}
-{-@ measure size @-}
-len        :: List a -> Int
-len []     = 0
-len (x:xs) = 1 + len xs
-\end{spec}
+<br>
+
+**Lists of size `N`**
 
 <br>
 
-We **strengthen** data constructor types
+\begin{code}
+{-@ type ListN a N = {v:List a | len v == N} @-}
+\end{code}
+
+
+Example: Length of a List
+-------------------------
+
+<br>
+
+**Lists of size equal to another list `X`**
+
+<br>
+
+\begin{code}
+{-@ type ListX a X = ListN a (len X) @-}
+\end{code}
+
+Example: Length of a List
+-------------------------
+
+<br>
+
+LiquidHaskell **strengthens** data constructor types
 
 <br>
 
 \begin{spec} <div/>
 data List a where
-  []  :: {v:List a | len v == 0}
-  (:) :: a -> t:List a -> {v:List a| len v = 1 + len t}
+  []  :: ListN a 0
+  (:) :: a -> t:List a -> ListN a (1 + len t)
 \end{spec}
 
-Example: Using Measures
+<br>
+
+Verification kept **decidable** [[PLDI 09]](http://fixme.com) [[ICFP 14]](http://fixme.com)
+
+
+[[Example: Matrices]](15_Matrix.lhs.slides.html)
 -----------------------
 
 <br>
 <br>
+<br>
 
-[DEMO: Vectors and Matrices](15_Matrix.lhs)
+
 
 
 Multiple Measures
@@ -125,7 +151,11 @@ Can support *many* measures for a type
 Ex: List Emptiness
 ------------------
 
+<br>
+
 Measure describing whether a `List` is empty
+
+<br>
 
 \begin{code}
 {-@ measure isNull @-}
@@ -135,26 +165,15 @@ isNull (_:_) = False
 
 <br>
 
-<div class="fragment">
-LiquidHaskell **strengthens** data constructors
+Conjoin Multiple Refinements
+----------------------------
 
-\begin{spec}
-data List a where
-  []  :: {v : List a | isNull v}
-  (:) :: a -> List a -> {v:List a | not (isNull v)}
-\end{spec}
-
-</div>
-
-Conjoining Refinements
-----------------------
-
-Data constructor refinements are **conjoined**
+<br>
 
 \begin{spec}
 data L a where
   []  :: {v:List a |  len v == 0
-                 && isNull v  }
+                   && isNull v  }
   (:) :: a
       -> xs:List a
       -> {v:List a |  len v = 1 + len xs
@@ -162,17 +181,13 @@ data L a where
 \end{spec}
 
 
-Multiple Measures: Red Black Trees
-==================================
 
- {#elements}
-------------
+[[Example: Red-Black Trees]](13_RedBlack.lhs.slides.html)
+-----------------------
 
 <br>
 <br>
 <br>
-
-<a href="13_RedBlack.lhs.slides.html" target="_blank">[continue]</a>
 
 Recap
 -----
