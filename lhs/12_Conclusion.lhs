@@ -1,7 +1,7 @@
  {#ASda}
 ========
 
-Conclusion
+Conclusions
 ----------
 
 <div class="hidden">
@@ -12,8 +12,8 @@ main = putStrLn "Easter Egg: to force Makefile"
 
 </div>
 
-Conclusion
-==========
+Conclusions
+===========
 
 Tension
 -------
@@ -28,6 +28,15 @@ Refinement Types
 <img src="../img/tension5.png" height=300px>
 
 **Automation and Expressiveness** via **Types and Logic**
+
+
+Refinement Types
+----------------
+
+<img src="../img/tension5.png" height=300px>
+
+**Types** lift **Program Logic + Analysis** to Modern Programs
+
 
 Refinement Types
 ----------------
@@ -50,32 +59,26 @@ Refinement Types
 
 
 Current & Future Work
+=====================
+
+Technology: Languages
 ---------------------
 
 <br>
-
-**Languages**
 
 Imperative "scripting" languages e.g. JavaScript
 
 
-Current & Future Work
----------------------
+Technology: Error Messages
+--------------------------
 
 <br>
 
-
-**Technology: Error Messages**
-
-Smarter the analysis, harder the explanation of failures
+**Smarter** the analysis, **harder** the explanation of failures
 
 
-Current & Future Work
+Applications: Testing
 ---------------------
-
-<br>
-
-**Applications: Testing**
 
 <br>
 
@@ -85,45 +88,31 @@ Current & Future Work
 
 <br>
 
-[Type Targeted Testing, ESOP 2015](http://www.fixme.com)
+[[Type Targeted Testing, ESOP 2015]](http://www.fixme.com)
 
 
-Current & Future Work
----------------------
-
-<br>
-
-**Applications: Code Synthesis**
+Applications: Code Synthesis
+----------------------------
 
 <br>
 
-Automatically **synthesize implementations** from type specifications
+Generate **implementations** from **type specifications**
 
 <br>
 
-[Program Synthesis from Refinement Types, Polikarpova & Solar-Lezama](http://www.fixme.com)
+[[Synthesis from Ref. Types, Polikarpova & Solar-Lezama]](http://www.fixme.com)
 
-Current & Future Work
----------------------
+Application Domains
+-------------------
 
 <br>
 
-**Application Domains**
-
-+ Web Applications
++ Web frameworks
 + Distributed Systems
 + Hybrid Systems
 
  {#asd}
 =======
-
-Thank You!
-----------
-
-<br>
-<br>
-
-`cabal install liquidhaskell`
 
 Thank You!
 ----------

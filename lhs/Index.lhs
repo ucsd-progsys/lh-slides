@@ -38,7 +38,7 @@ D. Vytiniotis, S. Peyton-Jones
 
 </div>
 
-Refinement Types
+Outline
 ================
 
  {#plan}
