@@ -254,15 +254,19 @@ Memory overflows **leaking secrets**...
 </div>
 
 Goal: Algorithmic Verification
-------------------------------
+==============================
 
-<br>
+ {#algo}
+--------
 
 **Expressive**
 
 <div class="fragment">
-+ Verify *programmer specified* properties
-+ Using *domain specific* analysis
+Verify *programmer specified* properties
+</div>
+
+<div class="fragment">
+Using *domain specific* analyses
 </div>
 
 <br>
@@ -270,18 +274,17 @@ Goal: Algorithmic Verification
 **Automatic**
 
 <div class="fragment">
-+ Rapid and automated feedback as code evolves
-+ Assist during *design*, not merely post-facto *validation*
+Rapid and automated feedback while programming
 </div>
 
-
-Algorithmic Verification
-========================
+<div class="fragment">
+Influence *design*, not only post-facto *validation*
+</div>
 
 Tension
 -------
 
-<img src="../img/tension0.png" height=300px>
+<img src="../img/tension.png" height=300px>
 
 Automation vs. Expressiveness
 
@@ -297,25 +300,25 @@ Tension
 
 <img src="../img/tension1.png" height=300px>
 
-Can Encode simple properties in modern type systems
+Can specify simple properties in modern type systems
 
 Tension
 -------
 
 <img src="../img/tension2.png" height=300px>
 
-Trading off Automation for Expressiveness
+**Model checkers** trade automation for expressiveness
 
-(requires: *stubs* or *harnesses*)
+(require *stubs* or *harnesses*)
 
 Tension
 -------
 
 <img src="../img/tension3.png" height=300px>
 
-Trading off Automation for Expressiveness
+**Program logics** trade automation for expressiveness
 
-(requires: *invariants*)
+(require *invariants*)
 
 
 Tension
@@ -324,8 +327,6 @@ Tension
 <img src="../img/tension4.png" height=300px>
 
 **Goal:** Find a sweet spot?
-
-<br>
 
 <div class="fragment">
 [[continue]](01_SimpleRefinements.lhs.slides.html)

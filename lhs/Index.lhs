@@ -21,7 +21,7 @@ University of California, San Diego
 <br>
 
 <div class="fragment">
-<a href="00_Motivation_Long.lhs.slides.html" target="_blank">[[...]]</a>
+<a href="00_Motivation_Long.lhs.slides.html" target="_blank">[[continue]]</a>
 </div>
 
 
