@@ -1,29 +1,20 @@
 Todo
 ----
 
+Measures
+--------
 
+data Vector
 
-Motivation
-----------
+data Matrix
 
+dotProduct :: x:Vector a -> y:VectorN a x -> Int
 
-+ [skip] **Modular**
-  + No such thing as "whole program"
-  + Must analyze "modules" in isolation ...
-  + ... compose together results
+forEach    :: x:Vector a -> (a -> b) -> VectorN b x
 
-+ **Expressive**
-  + To allow programmer specified properties
-  + To allow problem domain specific analysis
+transpose  :: n:Nat -> m:Nat -> MatrixN a m n -> Matrix a n m
 
-+ **Automatic**
-  + Automatic & rapid feedback as code evolves
-  + Assist during *design*, not merely post-facto *validation*
-
-- ~ 5 decades of research on FM/FV
-
-+ Tension
-
+matProduct :: ...
 
 
 Comparison with DT

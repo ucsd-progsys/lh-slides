@@ -2,7 +2,7 @@
 ========
 
 Conclusions
-----------
+-----------
 
 <div class="hidden">
 
@@ -66,7 +66,7 @@ Technology: Languages
 
 <br>
 
-Imperative "scripting" languages e.g. JavaScript
+Imperative *scripting* languages e.g. JavaScript
 
 
 Technology: Error Messages

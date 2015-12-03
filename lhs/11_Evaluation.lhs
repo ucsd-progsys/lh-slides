@@ -16,7 +16,7 @@ main = putStrLn "Easter Egg: to force Makefile"
 Evaluation
 ==========
 
-LiquidHaskell 
+LiquidHaskell
 -------------
 
 <br>
@@ -31,7 +31,7 @@ LiquidHaskell
 
 56 Modules
 
-LiquidHaskell 
+LiquidHaskell
 -------------
 
 <br>
@@ -59,29 +59,29 @@ Benchmarks
 
 <div align="center">
 
-**Library**                     
+**Library**
 ---------------------------   ---------
-`XMonad.StackSet`                      
-`Data.List`                         
-`Data.Set.Splay`                    
-`Data.Vector.Algorithms`           
-`HsColour`                        
-`Data.Map.Base`                
-`Data.Text`                        
-`Data.Bytestring`                  
+`XMonad.StackSet`
+`Data.List`
+`Data.Set.Splay`
+`Data.Vector.Algorithms`
+`HsColour`
+`Data.Map.Base`
+`Data.Text`
+`Data.Bytestring`
 ---------------------------   ---------
 
 </div>
 
 
-Benchmarks 
+Benchmarks
 ----------
 
 <div align="center">
 
 **Library**                     **LOC**
 ---------------------------   ---------
-`XMonad.StackSet`                   256 
+`XMonad.StackSet`                   256
 `Data.List`                         814
 `Data.Set.Splay`                    149
 `Data.Vector.Algorithms`           1219
@@ -99,35 +99,35 @@ Benchmarks
 
 <div align="center">
 
-**Library**                     **LOC**     **Specs**    
----------------------------   ---------   -----------    
-`XMonad.StackSet`                   256            74    
-`Data.List`                         814            46    
-`Data.Set.Splay`                    149            27    
-`Data.Vector.Algorithms`           1219            76    
-`HsColour`                         1047            19    
-`Data.Map.Base`                    1396           125    
-`Data.Text`                        3128           305    
-`Data.Bytestring`                  3505           307    
-**Total**                     **11512**       **977**    
----------------------------   ---------   -----------    
+**Library**                     **LOC**     **Specs**
+---------------------------   ---------   -----------
+`XMonad.StackSet`                   256            74
+`Data.List`                         814            46
+`Data.Set.Splay`                    149            27
+`Data.Vector.Algorithms`           1219            76
+`HsColour`                         1047            19
+`Data.Map.Base`                    1396           125
+`Data.Text`                        3128           305
+`Data.Bytestring`                  3505           307
+**Total**                     **11512**       **977**
+---------------------------   ---------   -----------
 
 </div>
 
 
-Code v. Specs 
+Code v. Specs
 -------------
 
 <img src="../img/code-spec-indiv.png" height=400px>
 
 
-Code v. Specs 
+Code v. Specs
 -------------
 
 <br>
 
 <img src="../img/code-spec-total.png" height=100px>
- 
+
 **About 8.5%**
 
 *Very* coarse measure...
@@ -142,7 +142,7 @@ Running Time
 `XMonad.StackSet`                   256            74          27s
 `Data.List`                         814            46          26s
 `Data.Set.Splay`                    149            27          27s
-`Data.Vector.Algorithms`           1219            76          89s 
+`Data.Vector.Algorithms`           1219            76          89s
 `HsColour`                         1047            19         196s
 `Data.Map.Base`                    1396           125         174s
 `Data.Text`                        3128           305         499s
@@ -153,31 +153,23 @@ Running Time
 </div>
 
 
+Refinement Types are Machine Checked Comments
+=============================================
 
  {#comments}
-============
-
-Types as Comments
------------------
-
-<br>
-
-**Types are Machine Checked Comments**
-
-<br>
-
-+ Express same *requirements*
-
-+ But *connected to* code
+------------
 
 <br>
 
 <div class="fragment">
-**Always in sync as code changes**
+Express same **requirements**
 </div>
 
-Liquid Types as Machine Checked Comments
-========================================
+<br>
+
+<div class="fragment">
+But **connected** to code as it evolves
+</div>
 
 Example: Data.Map
 -----------------
@@ -188,7 +180,7 @@ Example: Data.Map
 
 <br>
 
-`Map a b` is a *binary search* ordered tree
+`Map a b` is a *binary search ordered* tree
 
 Example: Data.Map
 -----------------
@@ -211,7 +203,7 @@ Example: Data.Map
 join :: k:a -> b
      -> l:Map {v:a | v < k} b
      -> r:Map {v:a | v > k} b
-     -> Map a b 
+     -> Map a b
 \end{spec}
 
 </div>
@@ -249,7 +241,7 @@ Example: Data.ByteString
 \begin{spec}
 unsafeIndex :: b:ByteString
             -> {v:Nat | v < bLength b}
-            -> Word8 
+            -> Word8
 \end{spec}
 
 </div>
@@ -274,7 +266,7 @@ Example: Data.ByteString
 \begin{spec}
 -- omits the checks on @n@ so there is
 -- an obligation to provide a proof
--- that @0 <= n <= 'length' xs@             
+-- that @0 <= n <= 'length' xs@
 \end{spec}
 
 <br>
@@ -285,7 +277,7 @@ Example: Data.ByteString
 \begin{spec}
 unsafeTake :: n:Nat
            -> {v:ByteString | n <= bLength v}
-           -> {v:ByteString | n = bLength v} 
+           -> {v:ByteString | n = bLength v}
 \end{spec}
 
 </div>
@@ -319,4 +311,3 @@ Recap
 
 <br>
 <br>
-

@@ -28,16 +28,11 @@ How to specify properties of **structures**?
 
 \begin{code}
 {-@ LIQUID "--no-termination" @-}
-{-@ LIQUID "--full"           @-}
+{-@ LIQUID "--diff"           @-}
 
 module Measures where
 import Prelude hiding ((!!), length)
 import Language.Haskell.Liquid.Prelude
-
--- length      :: L a -> Int
--- (!)         :: L a -> Int -> a
-
-infixr `C`
 \end{code}
 
 </div>
@@ -60,9 +55,9 @@ Given a type for lists:
 
 <br>
 
-\begin{code}
-data L a = N | C a (L a)
-\end{code}
+\begin{spec}
+data List a = [] | a : List a
+\end{spec}
 
 <div class="fragment">
 <br>
@@ -71,29 +66,30 @@ We can define the **length** as:
 
 <br>
 
-\begin{code}
-{-@ measure size  :: (L a) -> Int
-    size (N)      = 0
-    size (C x xs) = (1 + size xs)  @-}
-\end{code}
-
-
-\begin{code}
-{-@ data L [size] a = N | C {hd :: a, tl :: L a } @-}
-{-@ invariant {v: L a | 0 <= size v}              @-}
-\end{code}
+\begin{spec}
+{-@ measure size @-}
+len        :: List a -> Int
+len []     = 0
+len (x:xs) = 1 + len xs
+\end{spec}
 
 </div>
 
 <div class="hidden">
+\begin{code}
+type List a = [a]
+\end{code}
+
+</div>
 
 Example: Length of a List
 -------------------------
 
 \begin{spec}
-{-@ measure size  :: (L a) -> Int
-    size (N)      = 0
-    size (C x xs) = 1 + size xs  @-}
+{-@ measure size @-}
+len        :: List a -> Int
+len []     = 0
+len (x:xs) = 1 + len xs
 \end{spec}
 
 <br>
@@ -103,75 +99,10 @@ We **strengthen** data constructor types
 <br>
 
 \begin{spec} <div/>
-data L a where
-  N :: {v: L a | size v = 0}
-  C :: a -> t:_ -> {v:_| size v = 1 + size t}
+data List a where
+  []  :: {v:List a | len v == 0}
+  (:) :: a -> t:List a -> {v:List a| len v = 1 + len t}
 \end{spec}
-
-<div class="hidden">
-
-Measures Are Uninterpreted
---------------------------
-
-\begin{spec} <br>
-data L a where
-  N :: {v: L a | size v = 0}
-  C :: a -> t:_ -> {v:_| size v = 1 + size t}
-\end{spec}
-
-<br>
-
-`size` is an **uninterpreted function** in SMT logic
-
-Measures Are Uninterpreted
---------------------------
-
-<br>
-
-In SMT, [uninterpreted function](http://fm.csl.sri.com/SSFT12/smt-euf-arithmetic.pdf) $f$ obeys **congruence** axiom:
-
-<br>
-
-$$\forall \overline{x}, \overline{y}. \overline{x} = \overline{y} \Rightarrow
-f(\overline{x}) = f(\overline{y})$$
-
-<br>
-
-<div class="fragment">
-Other properties of `size` asserted when typing **fold** & **unfold**
-</div>
-
-<br>
-
-<div class="fragment">
-Crucial for *efficient*, *decidable* and *predictable* verification.
-</div>
-
-Measures Are Uninterpreted
---------------------------
-
-Other properties of `size` asserted when typing **fold** & **unfold**
-
-<br>
-
-<div class="fragment">
-\begin{spec}**Fold**<br>
-z = C x y     -- z :: {v | size v = 1 + size y}
-\end{spec}
-</div>
-
-<br>
-
-<div class="fragment">
-\begin{spec}**Unfold**<br>
-case z of
-  N     -> e1 -- z :: {v | size v = 0}
-  C x y -> e2 -- z :: {v | size v = 1 + size y}
-\end{spec}
-</div>
-
-
-</div>
 
 Example: Using Measures
 -----------------------
@@ -179,8 +110,7 @@ Example: Using Measures
 <br>
 <br>
 
-[DEMO: 001_Refinements.hs](../hs/start/001_Refinements.hs)
-
+[DEMO: Vectors and Matrices](15_Matrix.lhs)
 
 
 Multiple Measures
@@ -198,9 +128,9 @@ Ex: List Emptiness
 Measure describing whether a `List` is empty
 
 \begin{code}
-{-@ measure isNull :: (L a) -> Prop
-    isNull (N)      = true
-    isNull (C x xs) = false           @-}
+{-@ measure isNull @-}
+isNull []    = True
+isNull (_:_) = False
 \end{code}
 
 <br>
@@ -209,9 +139,9 @@ Measure describing whether a `List` is empty
 LiquidHaskell **strengthens** data constructors
 
 \begin{spec}
-data L a where
-  N :: {v : L a | isNull v}
-  C :: a -> L a -> {v:(L a) | not (isNull v)}
+data List a where
+  []  :: {v : List a | isNull v}
+  (:) :: a -> List a -> {v:List a | not (isNull v)}
 \end{spec}
 
 </div>
@@ -223,13 +153,14 @@ Data constructor refinements are **conjoined**
 
 \begin{spec}
 data L a where
-  N :: {v:L a |  size v = 0
-              && isNull v }
-  C :: a
-    -> xs:L a
-    -> {v:L a |  size v = 1 + size xs
-              && not (isNull v)      }
+  []  :: {v:List a |  len v == 0
+                 && isNull v  }
+  (:) :: a
+      -> xs:List a
+      -> {v:List a |  len v = 1 + len xs
+                   && not (isNull v)    }
 \end{spec}
+
 
 Multiple Measures: Red Black Trees
 ==================================
@@ -242,43 +173,6 @@ Multiple Measures: Red Black Trees
 <br>
 
 <a href="13_RedBlack.lhs.slides.html" target="_blank">[continue]</a>
-
-
-<div class="hidden">
-
-Multiple Measures: Sets and Duplicates
-======================================
-
- {#elements}
-------------
-
-[DEMO: 01_Elements.hs](../hs/01_Elements.hs)
-
-Measures vs. Index Types
-========================
-
-Decouple Property & Type
-------------------------
-
-Unlike [indexed types](http://dl.acm.org/citation.cfm?id=270793) ...
-
-<br>
-
-<div class="fragment">
-
-+ Measures **decouple** properties from structures
-
-+ Support **multiple** properties over structures
-
-+ Enable  **reuse** of structures in different contexts
-
-</div>
-
-<br>
-
-<div class="fragment">Invaluable in practice!</div>
-
-</div>
 
 Recap
 -----

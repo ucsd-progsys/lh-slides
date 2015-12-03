@@ -32,7 +32,7 @@ ok, bad1, bad2 :: RBTree Int
 {-@ type ARBT a    = {v: RBTree a | isARB v && isBH v} @-}
 
 {-@ measure isARB        :: (RBTree a) -> Prop
-    isARB (Leaf)         = true 
+    isARB (Leaf)         = true
     isARB (Node c x l r) = (isRB l && isRB r)
   @-}
 
@@ -44,7 +44,7 @@ ok, bad1, bad2 :: RBTree Int
 
 {-@ measure isB        :: RBTree a -> Prop
     isB (Leaf)         = false
-    isB (Node c x l r) = c == B 
+    isB (Node c x l r) = c == B
   @-}
 
 {-@ predicate IsB T = not (col T == R) @-}
@@ -57,7 +57,7 @@ ok, bad1, bad2 :: RBTree Int
 
 {-@ measure bh        :: RBTree a -> Int
     bh (Leaf)         = 0
-    bh (Node c x l r) = bh l + if (c == R) then 0 else 1 
+    bh (Node c x l r) = bh l + if (c == R) then 0 else 1
   @-}
 
 
@@ -83,7 +83,7 @@ ok, bad1, bad2 :: RBTree Int
 + <div class="fragment">**Order Invariant:** Left keys < root < Right keys </div>
 
 
-Basic Type 
+Basic Type
 ----------
 
 \begin{code}
@@ -92,53 +92,52 @@ data Color = R | B
 data RBTree a = Leaf
               | Node { c     :: Color
                      , key   :: a
-                     , left  :: RBTree a 
+                     , left  :: RBTree a
                      , right :: RBTree a }
 \end{code}
 
 
-1. Color Invariant 
+1. Color Invariant
 ------------------
 
 `Red` nodes have `Black` children
 
 <div class="fragment">
 \begin{spec}
-measure isRB        :: Tree a -> Prop
-isRB (Leaf)         = true
-isRB (Node c x l r) = c == R => (isB l && isB r)
+{-@ measure isRB @-}
+isRB Leaf           = True
+isRB (Node c x l r) = c==R => (isB l && isB r)
                       && isRB l && isRB r
 \end{spec}
 </div>
 
 <div class="fragment">
-where 
+where
 \begin{spec}
-measure isB         :: Tree a -> Prop 
-isB (Leaf)          = true
-isB (Node c x l r)  = c == B
+{-@ measure isB @-}
+isB Leaf           = True
+isB (Node c x l r) = c == B
 \end{spec}
 </div>
 
 
-1. *Almost* Color Invariant 
+1. *Almost* Color Invariant
 ---------------------------
 
 <br>
 
-Color Invariant **except** at root. 
+Color Invariant **except** at root.
 
 <br>
 
 <div class="fragment">
 \begin{spec}
-measure isAlmost        :: RBTree a -> Prop
-isAlmost (Leaf)         = true
+{-@ measure isAlmost @-}
+isAlmost Leaf           = True
 isAlmost (Node c x l r) = isRB l && isRB r
 \end{spec}
 </div>
 
-<!-- BEGIN CUT END CUT -->
 
 2. Height Invariant
 -------------------
@@ -146,11 +145,11 @@ isAlmost (Node c x l r) = isRB l && isRB r
 Number of `Black` nodes equal on **all paths**
 
 <div class="fragment">
-\begin{spec} 
-measure isBH        :: RBTree a -> Prop
-isBH (Leaf)         =  true
-isBH (Node c x l r) =  bh l == bh r 
-                    && isBH l && isBH r 
+\begin{spec}
+{-@ measure isBH @-}
+isBH Leaf           =  True
+isBH (Node c x l r) =  bh l == bh r
+                    && isBH l && isBH r
 \end{spec}
 </div>
 
@@ -159,9 +158,9 @@ isBH (Node c x l r) =  bh l == bh r
 where
 
 \begin{spec}
-measure bh        :: RBTree a -> Int
-bh (Leaf)         = 0
-bh (Node c x l r) = bh l 
+{-@ measure bh    :: RBTree a -> Nat @-}
+bh Leaf           = 0
+bh (Node c x l r) = bh l
                   + if c == R then 0 else 1
 \end{spec}
 </div>
@@ -212,7 +211,7 @@ Ex: Satisfies Invariants
 
 \begin{code}
 {-@ ok   :: RBT Int @-}
-ok = Node R 2 
+ok = Node R 2
           (Node B 1 Leaf Leaf)
           (Node B 3 Leaf Leaf)
 \end{code}
@@ -247,7 +246,7 @@ bad2 = Node  R 2
 \end{code}
 
 
-Verified Red-Black Operations 
+Verified Red-Black Operations
 -----------------------------
 
 <br>
@@ -265,4 +264,3 @@ Verified Red-Black Operations
 <br>
 
 **In presence of rotation & rebalancing** [[details]](https://github.com/ucsd-progsys/liquidhaskell/blob/master/tests/pos/RBTree.hs)
-
