@@ -190,11 +190,11 @@ Missing Keys
 <div class="fragment">
 \begin{spec}
 λ> :m +Data.Map
-λ> let m = fromList [ ("haskell", "lazy")
-                    , ("racket" , "eager")]
+λ> let m = fromList [ ("haskell", "static")
+                    , ("python" , "dynamic")]
 
 λ> m ! "haskell"
-"lazy"
+"static"
 \end{spec}
 </div>
 
@@ -213,7 +213,7 @@ Segmentation Faults
 <div class="fragment">
 \begin{spec}
 λ> :m +Data.Vector
-λ> let v = fromList ["haskell", "racket"]
+λ> let v = fromList ["haskell", "python"]
 λ> unsafeIndex v 0
 "haskell"
 \end{spec}
@@ -235,9 +235,9 @@ Segmentation Faults
 
 \begin{spec}
 λ> :m + Data.Text Data.Text.Unsafe
-λ> let t = pack "Norman"
+λ> let t = pack "Boulder"
 λ> takeWord16 4 t
-"Norm"
+"Boul"
 \end{spec}
 
 <br>
@@ -249,30 +249,31 @@ Memory overflows **leaking secrets**...
 
 \begin{spec}
 λ> takeWord16 20 t
-"Norman\1912\3148\SOH\NUL\15928\2486\SOH\NUL"
+"Boulder\1912\3148\SOH\NUL\15928\2486\SOH\NUL"
 \end{spec}
 </div>
 
-Goal
-----
+Goal: Algorithmic Verification
+------------------------------
 
 <br>
 
-Extend Type System
-
-<br>
-
-+ To prevent *wider class* of errors
-
-+ To enforce *program specific* properties
-
-<br>
+**Expressive**
 
 <div class="fragment">
-
-**Without sacrificing automation**
-
++ Verify *programmer specified* properties
++ Using *domain specific* analysis
 </div>
+
+<br>
+
+**Automatic**
+
+<div class="fragment">
++ Rapid and automated feedback as code evolves
++ Assist during *design*, not merely post-facto *validation*
+</div>
+
 
 Algorithmic Verification
 ========================
@@ -287,9 +288,16 @@ Automation vs. Expressiveness
 Tension
 -------
 
+<img src="../img/tension0.png" height=300px>
+
+Extremes: Coverity vs. CoC
+
+Tension
+-------
+
 <img src="../img/tension1.png" height=300px>
 
-Extremes: Hindley-Milner vs. CoC
+Can Encode simple properties in modern type systems
 
 Tension
 -------
@@ -298,14 +306,35 @@ Tension
 
 Trading off Automation for Expressiveness
 
+(requires: *stubs* or *harnesses*)
+
 Tension
 -------
 
 <img src="../img/tension3.png" height=300px>
 
+Trading off Automation for Expressiveness
+
+(requires: *invariants*)
+
+
+Tension
+-------
+
+<img src="../img/tension4.png" height=300px>
+
 **Goal:** Find a sweet spot?
 
-<!-- BEGIN CUT
+<br>
+
+<div class="fragment">
+[[continue]](01_SimpleRefinements.lhs.slides.html)
+</div>
+
+
+<div class="hidden">
+
+BEGIN CUT
 
 Program Logics
 --------------
@@ -326,7 +355,6 @@ Program Logics
 
 <div class="fragment"> Automatic but **not** Expressive </div>
 
-END CUT -->
 
 Program Logics
 --------------
@@ -334,7 +362,6 @@ Program Logics
 <br>
 
 **Floyd-Hoare** (ESC, Dafny, SLAM/BLAST,...)
-
 
 <br>
 
@@ -361,9 +388,11 @@ Generalize *Program Logics* with *Types*
 
 + **Proofs:**      Subtyping + SMT Solvers
 
-<!-- BEGIN CUT
+<div class="hidden">
+
 + **Inference:**   Hindley-Milner + Abstract Interpretation
-  -->
+
+</div>
 
 <div class="fragment">
   <br>
@@ -374,4 +403,7 @@ Generalize *Program Logics* with *Types*
 
 <div class="fragment">
 [[continue]](01_SimpleRefinements.lhs.slides.html)
+</div>
+
+END CUT
 </div>

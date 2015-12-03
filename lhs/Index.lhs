@@ -4,17 +4,15 @@ main = putStrLn "Easter Egg: to force Makefile"
 \end{code}
 </div>
 
-LiquidHaskell 
+ {#liquid}
 ==============
 
-Refinement Types for Haskell
-------------------------------
-
+Refinement Types
+----------------
 
 <br>
 <br>
 
-<div class="fragment">
 **Ranjit Jhala**
 
 University of California, San Diego
@@ -22,26 +20,30 @@ University of California, San Diego
 <br>
 <br>
 
-Joint work with: 
+<div class="fragment">
+<a href="00_Motivation_Long.lhs.slides.html" target="_blank">[[...]]</a>
+</div>
+
+
+<div class="hidden">
+
+<br>
+<div class="fragment">
+Joint work with:
 
 N. Vazou, E. Seidel, P. Rondon, M. Kawaguchi
 
 D. Vytiniotis, S. Peyton-Jones
+</div>
 
 </div>
 
- {#motivation}
---------------
+Refinement Types
+================
 
+ {#plan}
+--------
 
-<br>
-<br>
-
-<a href="00_Motivation_Long.lhs.slides.html" target="_blank">[Continue...]</a>
-
-
-Plan
-----
 
 <div class="fragment">
 <a href="01_SimpleRefinements.lhs.slides.html" target="_blank">**Refinement Types**</a>
@@ -70,4 +72,3 @@ Plan
 <div class="fragment">
 <a href="12_Conclusion.lhs.slides.html" target="_blank">**Conclusion**</a>
 </div>
-

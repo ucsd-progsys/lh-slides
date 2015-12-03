@@ -15,8 +15,22 @@ main = putStrLn "Easter Egg: to force Makefile"
 Conclusion
 ==========
 
-Liquid Types
-------------
+Tension
+-------
+
+<img src="../img/tension4.png" height=300px>
+
+**Goal:** Find a sweet spot?
+
+Refinement Types
+----------------
+
+<img src="../img/tension5.png" height=300px>
+
+**Automation and Expressiveness** via **Types and Logic**
+
+Refinement Types
+----------------
 
 <br>
 
@@ -34,33 +48,71 @@ Liquid Types
 
 </div>
 
-Current & Future Work
----------------------
-
-<br>
-
-**Technology**
-
-<br>
-
-+ GHC
-+ Speed
-+ Effects
-+ *Error Messages*
 
 Current & Future Work
 ---------------------
 
 <br>
 
-**Applications**
+**Languages**
+
+Imperative "scripting" languages e.g. JavaScript
+
+
+Current & Future Work
+---------------------
 
 <br>
 
-+ Testing
-+ Web frameworks
-+ Concurrency
-+ Code Completion
+
+**Technology: Error Messages**
+
+Smarter the analysis, harder the explanation of failures
+
+
+Current & Future Work
+---------------------
+
+<br>
+
+**Applications: Testing**
+
+<br>
+
++ **Synthesize tests** from input specifications
++ **Execute** code
++ **Validate** result against output specifications
+
+<br>
+
+[Type Targeted Testing, ESOP 2015](http://www.fixme.com)
+
+
+Current & Future Work
+---------------------
+
+<br>
+
+**Applications: Code Synthesis**
+
+<br>
+
+Automatically **synthesize implementations** from type specifications
+
+<br>
+
+[Program Synthesis from Refinement Types, Polikarpova & Solar-Lezama](http://www.fixme.com)
+
+Current & Future Work
+---------------------
+
+<br>
+
+**Application Domains**
+
++ Web Applications
++ Distributed Systems
++ Hybrid Systems
 
  {#asd}
 =======
@@ -79,4 +131,4 @@ Thank You!
 <br>
 <br>
 
-[`http://goto.ucsd.edu/liquid`](http://goto.ucsd.edu/liquid)
+[`http://www.refinement-types.org`](http://www.refinement-types.org)

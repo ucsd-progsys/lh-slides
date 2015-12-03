@@ -23,17 +23,17 @@ infixr 9 `C`
 
 map                  :: (a -> b) -> List a -> List b
 map f N              = N
-map f (C x xs)       = C (f x) (map f xs) 
+map f (C x xs)       = C (f x) (map f xs)
 
 
-foldr                :: (a -> b -> b) -> b -> List a -> b 
+foldr                :: (a -> b -> b) -> b -> List a -> b
 foldr f acc N        = acc
 foldr f acc (C x xs) = f x (foldr f acc xs)
 
 
 -- Uh oh. How shall we fix the error? Lets move on for now...
 
-foldr1           :: (a -> a -> a) -> List a -> a   
+foldr1           :: (a -> a -> a) -> List a -> a
 foldr1 f (C x xs)    = foldr f x xs
 foldr1 f N           = die "foldr1"
 
@@ -46,8 +46,8 @@ foldr1 f N           = die "foldr1"
 
 wtAverage wxs = total `divide` weights
   where
-    total     = sum $ map (\(w, x) -> w * x) wxs
-    weights   = sum $ map (\(w, _) -> w    ) wxs
+    total     = sum (map (\(w, x) -> w * x) wxs)
+    weights   = sum (map (\(w, _) -> w    ) wxs)
     sum       = foldr1 (+)
 
 

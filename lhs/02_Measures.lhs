@@ -77,7 +77,6 @@ We can define the **length** as:
     size (C x xs) = (1 + size xs)  @-}
 \end{code}
 
-<div class="hidden">
 
 \begin{code}
 {-@ data L [size] a = N | C {hd :: a, tl :: L a } @-}
@@ -85,6 +84,8 @@ We can define the **length** as:
 \end{code}
 
 </div>
+
+<div class="hidden">
 
 Example: Length of a List
 -------------------------
@@ -106,6 +107,8 @@ data L a where
   N :: {v: L a | size v = 0}
   C :: a -> t:_ -> {v:_| size v = 1 + size t}
 \end{spec}
+
+<div class="hidden">
 
 Measures Are Uninterpreted
 --------------------------
@@ -167,13 +170,16 @@ case z of
 \end{spec}
 </div>
 
+
+</div>
+
 Example: Using Measures
 -----------------------
 
 <br>
 <br>
 
-[DEMO: 001_Refinements.hs](../hs/001_Refinements.hs)
+[DEMO: 001_Refinements.hs](../hs/start/001_Refinements.hs)
 
 
 
@@ -238,8 +244,7 @@ Multiple Measures: Red Black Trees
 <a href="13_RedBlack.lhs.slides.html" target="_blank">[continue]</a>
 
 
-
-<!-- BEGIN CUT
+<div class="hidden">
 
 Multiple Measures: Sets and Duplicates
 ======================================
@@ -273,8 +278,7 @@ Unlike [indexed types](http://dl.acm.org/citation.cfm?id=270793) ...
 
 <div class="fragment">Invaluable in practice!</div>
 
-END CUT -->
-
+</div>
 
 Recap
 -----
@@ -293,7 +297,3 @@ Recap
 
 <br>
 <br>
-
-<!-- BEGIN CUT
-<div class="fragment"><a href="04_AbstractRefinements.lhs.slides.html" target="_blank">[continue]</a></div>
-     END CUT -->
